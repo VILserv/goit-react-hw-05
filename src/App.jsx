@@ -13,18 +13,19 @@ const NotFoundPage = lazy(() => import("./pages/NotFoundPage"));
 const App = () => {
   return (
     <div>
-      <Suspense fallback={<div>LOADING...</div>}></Suspense>
-      <Routes>
-        <Route path="/" element={<Navigation />}>
-          <Route index element={<HomePage />} />
-          <Route path="/movies" element={<MoviePage />} />
-          <Route path="/movies/:movieId" element={<MovieDetailsPage />}>
-            <Route path="cast" element={<MovieCast />} />
-            <Route path="reviews" element={<MovieReviews />} />
+      <Suspense fallback={<div>LOADING...</div>}>
+        <Routes>
+          <Route path="/" element={<Navigation />}>
+            <Route index element={<HomePage />} />
+            <Route path="/movies" element={<MoviePage />} />
+            <Route path="/movies/:movieId" element={<MovieDetailsPage />}>
+              <Route path="cast" element={<MovieCast />} />
+              <Route path="reviews" element={<MovieReviews />} />
+            </Route>
+            <Route path="*" element={<NotFoundPage />} />
           </Route>
-          <Route path="*" element={<NotFoundPage />} />
-        </Route>
-      </Routes>
+        </Routes>
+      </Suspense>
     </div>
   );
 };
